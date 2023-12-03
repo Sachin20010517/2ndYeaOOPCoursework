@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         WestminsterShoppingManager manager= new WestminsterShoppingManager();
-
+        //ArrayList<Product> manager_arrayList=new ArrayList<Product>();
 
         System.out.println("\n                       ---  Welcome!!  ---");
         Scanner input = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Main {
                     if (productType==1){
                         Electronics electronic = addElectronics();
                         manager.addProduct(electronic);
-
+//                        manager_arrayList.add(electronic);
                     }
 
                     if (productType==2){
@@ -54,7 +54,9 @@ public class Main {
 
                 case 3:
 
-
+//                    manager.printProduct(manager_arrayList);
+                    System.out.println("Print");
+                    manager.printProduct();
                     break;
 
                 case 4:

@@ -50,8 +50,5 @@ public abstract class Product {
 
     public abstract String getProductType();
 
-    @Override
-    public String toString() {
-        return "Lis";
-    }
+
 }

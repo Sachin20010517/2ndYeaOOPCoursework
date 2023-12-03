@@ -36,6 +36,6 @@ public class Clothing extends Product {
     }
 
     public String getProductType(){
-        return "Product Type : Clothing";
+        return "Clothing";
     }
 }

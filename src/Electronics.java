@@ -34,6 +34,6 @@ public class Electronics extends Product {
     }
 
     public String getProductType(){
-        return "Product Type : Electronic";
+        return "Electronic";
     }
 }
