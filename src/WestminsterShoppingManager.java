@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class WestminsterShoppingManager implements ShoppingManager{
 
-    private ArrayList<Product>  product_arrayList;
+    private static ArrayList<Product>  product_arrayList;
     private static final int maximumProduct=50;
 
     public WestminsterShoppingManager(){
@@ -25,21 +25,48 @@ public class WestminsterShoppingManager implements ShoppingManager{
     }
 
     @Override
-    public void deleteProduct(Product _product) {
-        product_arrayList.remove(_product);
+    public void deleteProduct(String _productId) {
+        Product foundProduct = null;
+        for (Product product : product_arrayList) {
+            if (product.getProductId().equals(_productId)) {
+                foundProduct = product;
+                break; // Exit the loop once the product is found
+            }
+        }
+
+        if (foundProduct != null) {
+            product_arrayList.remove(foundProduct);
+            System.out.println("Product was successfully deleted!\n     Removed Product Details:");
+            displayProductInfo(foundProduct);
+            System.out.println("Total number of products left: " + product_arrayList.size());
+        } else {
+            System.out.println("Product with ID " + _productId + " not found.");
+        }
+//        for (Product product : product_arrayList) {
+//            if (product.getProductId().equals(_product)){
+//                product_arrayList.remove(product);
+//            }
+//        }
+//        System.out.println("Successfully deleted "+_product+" product");
     }
 
 
     public void printProduct() {
-        System.out.println("          List of Products:\n");
-        for (Product product : product_arrayList) {
-            displayProductInfo(product);
+        if (product_arrayList.isEmpty()){
+            System.out.println("\nThe store is completely empty.");
+        }
+        else{
+            System.out.println("          List of Products:\n");
+            for (Product product : product_arrayList) {
+                displayProductInfo(product);
+            }
+
         }
 
 
     }
 
-    private void displayProductInfo(Product product) {
+    private void displayProductInfo(Product product) {   //This method is used for printProduct() and deleteProduct() both
         if (product.getProductType().equals("Electronic")){
             System.out.println("Product Type: "+product.getProductType());
             System.out.println("Product Id  : "+product.getProductId());
@@ -60,7 +87,7 @@ public class WestminsterShoppingManager implements ShoppingManager{
 
         System.out.println("Available Items       : " + product.getNumberOfAvailableItem());
         System.out.println("Price       : " + product.getPrice());
-        System.out.println("    ---------------------\n");
+        System.out.println("    ******************\n");
 
 //        if(product.getProductType().equals("Electronic")){
 //            System.out.println("I got this.");

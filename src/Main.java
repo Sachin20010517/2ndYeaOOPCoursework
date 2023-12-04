@@ -29,33 +29,29 @@ public class Main {
             switch (choice){
 
                 case 1:
-                    System.out.print("\nWhich product do you want to add, clothing or electronics? Select (1) if it's an electronic product; if not, select (2): ");
+                    System.out.print("\nWhich product do you want to add, clothing or electronics?\nSelect (1) if it's an electronic product; if not, select (2): ");
                     int productType= input.nextInt();
                     if (productType==1){
                         Electronics electronic = addElectronics();
                         manager.addProduct(electronic);
-//                        manager_arrayList.add(electronic);
                     }
 
-                    if (productType==2){
+                    else if (productType==2){
                         Clothing clothes = addClothes();
                         manager.addProduct(clothes);
                     }
                     else {
-                        System.out.println("Please Enter Valid Number");
+                        System.out.println("Please Enter Valid Number\n");
                     }
                     break;
 
                 case 2:
-                    System.out.println("Type in the product ID to be removed :");
-//                    Product newProduct = input.nextLine();
-                    //manager.deleteProduct(productID_to_delete);
+                    System.out.print("\nType in the product ID to be removed :");
+                    String productID_to_delete = input.next();
+                    manager.deleteProduct(productID_to_delete);
                     break;
 
                 case 3:
-
-//                    manager.printProduct(manager_arrayList);
-                    System.out.println("Print");
                     manager.printProduct();
                     break;
 
@@ -64,7 +60,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Not a valid option. Please make sure you are selecting a valid option.");
+                    System.out.println("Not a valid option. Please make sure you are selecting a valid option.\n");
 
             }
 
@@ -74,7 +70,7 @@ public class Main {
     }
 
     private static Clothing addClothes() {
-        System.out.println("Enter Clothing Details:");
+        System.out.println("\nEnter Clothing Details:");
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Product ID: ");
@@ -101,7 +97,7 @@ public class Main {
     }
 
     private static Electronics addElectronics() {
-        System.out.println("Enter Electronics Details:");
+        System.out.println("\nEnter Electronics Details:");
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Product ID: ");
