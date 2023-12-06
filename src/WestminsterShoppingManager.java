@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class WestminsterShoppingManager implements ShoppingManager{
@@ -53,7 +57,7 @@ public class WestminsterShoppingManager implements ShoppingManager{
 
     public void printProduct() {
         if (product_arrayList.isEmpty()){
-            System.out.println("\nThe store is completely empty.");
+            System.out.println("\nThe store is completely empty!!!.\n");
         }
         else{
             System.out.println("          List of Products:\n");
@@ -109,7 +113,77 @@ public class WestminsterShoppingManager implements ShoppingManager{
 
     @Override
     public void saveProduct() {
+        try {
+            FileWriter myWriter = new FileWriter("product.txt");
 
+            for (Product product : product_arrayList) {
+                // Assuming each line in the file represents a serialized product
+                String serializedProduct = writingProduct(product);
+                myWriter.write(serializedProduct+"\n");
+
+            }
+            myWriter.close();
+
+            System.out.println("Product list saved successfully!");
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private String writingProduct(Product product) {   //I used this method as private, because it made for only use within this class
+        if (product instanceof Electronics) {
+            return "E|" + product.getProductId() + "|" + product.getProductName() + "|" +
+                    product.getNumberOfAvailableItem() + "|" + product.getPrice() + "|" +
+                    ((Electronics) product).getBrand() + "|" + ((Electronics) product).getWarrentyPeriod();
+        } else if (product instanceof Clothing) {
+            return "C|" + product.getProductId() + "|" + product.getProductName() + "|" +
+                    product.getNumberOfAvailableItem() + "|" + product.getPrice() + "|" +
+                    ((Clothing) product).getSize() + "|" + ((Clothing) product).getColor();
+        }
+        return "";
+    }
+
+    public void loadProduct(){
+        try {
+            File file = new File("product.txt");
+            Scanner file_reader= new Scanner(file);
+            while (file_reader.hasNextLine()){
+                String _line = file_reader.nextLine();
+                Product product = textReader(_line);
+                if (product!=null){
+                    product_arrayList.add(product);
+                }
+            }
+            System.out.println("Product list loaded successfully!");
+        }catch (IOException e){
+            System.out.println("An error occurred while reading the file.");
+            e.printStackTrace();
+        }
+
+    }
+
+    private Product textReader(String serializedProduct) {
+        String[] tokens = serializedProduct.split("\\|");
+        if (tokens.length >= 6) {
+            String type = tokens[0];
+            String productId = tokens[1];
+            String productName = tokens[2];
+            int availableItems = Integer.parseInt(tokens[3]);
+            double price = Double.parseDouble(tokens[4]);
+
+            if (type.equals("E") && tokens.length == 7) {
+                String brand = tokens[5];
+                int warrantyPeriod = Integer.parseInt(tokens[6]);
+                return new Electronics(productId, productName, availableItems, price, brand, warrantyPeriod);
+            } else if (type.equals("C") && tokens.length == 7) {
+                String size = tokens[5];
+                return new Clothing(productId, productName, availableItems, price, size, tokens[6]);
+            }
+        }
+        return null;
     }
 
 

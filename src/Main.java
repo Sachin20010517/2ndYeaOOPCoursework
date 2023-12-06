@@ -1,11 +1,10 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         WestminsterShoppingManager manager= new WestminsterShoppingManager();
-        //ArrayList<Product> manager_arrayList=new ArrayList<Product>();
 
         System.out.println("\n                       ---  Welcome!!  ---");
         Scanner input = new Scanner(System.in);
@@ -19,6 +18,7 @@ public class Main {
             System.out.println("2) Delete a Product");
             System.out.println("3) Print the List of the Product");
             System.out.println("4) Save in a File ");
+            System.out.println("5) Load the file ");
             System.out.println("    0) Quit");
             System.out.println("------------------------------------------------------------------------------------");
 
@@ -56,6 +56,13 @@ public class Main {
                     break;
 
                 case 4:
+                    manager.saveProduct();
+                    break;
+
+                case 5:
+                    manager.loadProduct();
+                    break;
+                case 0:
                     System.out.println("Getting Out of the Online Store. Goodbye!");
                     break;
 
@@ -84,9 +91,10 @@ public class Main {
 
         System.out.print("Price: ");
         double price = scanner.nextDouble();
+        scanner.nextLine(); // Consume the newline character .This helps avoid errors when reading the string input later on.
 
         System.out.print("Size: ");
-        int size = scanner.nextInt();
+        String size = scanner.next();
         scanner.nextLine(); // Consume the newline character .This helps avoid errors when reading the string input later on.
 
         System.out.print("Color: ");

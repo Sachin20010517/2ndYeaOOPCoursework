@@ -15,3 +15,5 @@ S
 #src/WestminsterShoppingManager.java,4\5\45cc1029f82bae15ce1b092747028f80cee4828e
 H
 src/ShoppingManager.java,a\5\a51a8c7eb210b95734035e3ac139c865fd48af47
+;
+product.txt,f\f\ffb13c7e72385ad59c64dca16097da6d93ad054e

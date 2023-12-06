@@ -1,17 +1,17 @@
 public class Clothing extends Product {
     private String color;
-    private int size;
+    private String size;
 
     public Clothing(){
 
     }
 
-    public Clothing(String color, int size) {
+    public Clothing(String color, String size) {
         this.color = color;
         this.size = size;
     }
 
-    public Clothing(String productId,String prouctName, int availableItems,double price,String color, int size) {
+    public Clothing(String productId,String prouctName, int availableItems,double price,String color, String size) {
         super(productId,prouctName,availableItems,price);
         this.color = color;
         this.size = size;
@@ -23,7 +23,7 @@ public class Clothing extends Product {
         return color;
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
@@ -31,7 +31,7 @@ public class Clothing extends Product {
         this.color = color;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
